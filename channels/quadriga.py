@@ -71,6 +71,6 @@ class QuadrigaChannels(Channel):
         return spectral_efficiencies
 
     def read_mat_files(self, episode: int) -> np.ndarray:
-        channels = sio.loadmat(f"channels/quadriga_channels/sim_{episode}.mat")
+        channels = sio.loadmat(f"channels/hall_los_nlos/sim_{episode}.mat")
 
         return channels["H"]

@@ -165,7 +165,7 @@ class SSRProtect(Agent):
                 else 0
             )
         else:
-            reward -= 3 - 10 * reward
+            reward -= 3 + reward
 
         return reward
 
