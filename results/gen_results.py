@@ -364,14 +364,18 @@ def gen_results_violations(
                     axis=1,
                 )
                 mean_violations = np.mean(slice_episodes_violations, axis=0)
-                std_violations = np.std(slice_episodes_violations, axis=0)
-                plt.plot(mean_violations, label=f"{agent}, {slice}")
-                plt.fill_between(
-                    np.arange(std_violations.shape[0]),
-                    mean_violations - std_violations,
-                    mean_violations + std_violations,
-                    alpha=0.2,
+                # std_violations = np.std(slice_episodes_violations, axis=0)
+                plt.plot(
+                    mean_violations, label=f"{agent}, {slice}"
+                ) if agent != "ssr_protect" else plt.plot(
+                    mean_violations, label=f"ssr-p, {slice}"
                 )
+                # plt.fill_between(
+                #     np.arange(std_violations.shape[0]),
+                #     mean_violations - std_violations,
+                #     mean_violations + std_violations,
+                #     alpha=0.2,
+                # )
         plt.grid()
         plt.xlabel(xlabel, fontsize=14)
         plt.ylabel(ylabel, fontsize=14)
@@ -592,10 +596,10 @@ agent_names = ["ssr_protect", "ssr"]
 gen_results_violations(scenario_names, agent_names, episodes, slice_names)
 metrics = ["buffer_latencies", "pkt_throughputs"]
 slice_names = ["embb", "urllc", "mmtc"]
-gen_results_histogram(
-    scenario_names,
-    agent_names,
-    episodes,
-    slice_names,
-    metrics,
-)
+# gen_results_histogram(
+#     scenario_names,
+#     agent_names,
+#     episodes,
+#     slice_names,
+#     metrics,
+# )
